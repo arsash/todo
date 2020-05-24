@@ -28,6 +28,7 @@
     color: red;
     border: none;
     cursor: pointer;
+    font-size: 20px;
 }
 
 .todo__item {

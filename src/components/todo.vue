@@ -7,8 +7,6 @@
             :todos="todos"
             @removeTodo="removeTodo"
             )
-        div
-            pre {{todos}}  
 </template>
 
 <script>
