@@ -1,7 +1,36 @@
 <template lang="pug">
     .todo_input
-        input(type="text" placeholder="Todo name" autofocus).input
+        input(
+            type="text"
+            placeholder="What Todo? ..."
+            autofocus
+            v-model="todo.name"
+            @keydown.enter="addTodo"
+            ).input
 </template>
+
+<script>
+let uniqID = 1;
+export default {
+    data() {
+        return {
+            todo: {
+                id: uniqID,
+                name: '',
+                checked: false
+            }
+        }
+    },
+    methods: {
+        addTodo() {
+            uniqID++;
+            this.$emit('addTodo', {...this.todo});
+            this.todo.name = '';
+            this.todo.id = uniqID;
+        }
+    },
+}
+</script>
 
 <style lang="scss" scoped>
 .input {

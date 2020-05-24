@@ -2,27 +2,8 @@
   div.todolist
     .content
       ul.list
-        li.item
-          .todo__item
-            label.label
-              .input_block
-                  input(type='checkbox').input
-              .title todo name
-            button(type='button').remove x
-        li.item
-          .todo__item
-            label.label
-              .input_block
-                  input(type='checkbox').input
-              .title todo name
-            button(type='button').remove x
-        li.item
-          .todo__item
-            label.label
-              .input_block
-                  input(type='checkbox').input
-              .title todo name
-            button(type='button').remove x
+        li.item(v-for="todo in todos")
+          list-item(:todo="todo")
 
     .footer
       .footer_content
@@ -33,11 +14,14 @@
 </template>
 
 <script>
-
+import listItem from './todoListItem'
 import todoListFilter from './todoListFilter.vue'
 export default {
+  props: {
+    todos: Array
+  },
   components: {
-    todoListFilter
+    todoListFilter, listItem
   }
 }
 </script>
@@ -63,27 +47,6 @@ export default {
   border: none;
   cursor: pointer;
   font-size: 20px;
-}
-
-.todo__item {
-  display: flex;
-  align-items: center;
-
-  &:hover {
-    .remove {
-      display: flex;
-    }
-  }
-}
-
-.label {
-  display: flex;
-  align-items: center;
-  flex: 1;
-}
-
-.input_block {
-  width: 60px;
 }
 
 .footer {
