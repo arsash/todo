@@ -5,7 +5,7 @@
               .input_block
                   input(type='checkbox').input
               .title {{todo.name}}
-            button(type='button').remove x
+            button(type='button' @click="removeTodo").remove x
 </template>
 
 <script>
@@ -14,10 +14,22 @@
         props: {
             todo: Object
         },
+        methods: {
+            removeTodo() {
+                this.$emit('removeTodo', this.todo.id)
+            }
+        }
     }
 </script>
 
 <style lang="scss" scoped>
+.remove {
+    background: transparent;
+    color: red;
+    border: none;
+    cursor: pointer;
+}
+
 .todo__item {
   display: flex;
   align-items: center;

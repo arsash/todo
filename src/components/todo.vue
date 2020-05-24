@@ -2,7 +2,11 @@
   
     div.todo
         todo-input(@addTodo="addTodo")
-        todo-list(:todos="todos")
+        todo-list(
+            v-if="todos.length > 0"
+            :todos="todos"
+            @removeTodo="removeTodo"
+            )
         div
             pre {{todos}}  
 </template>
@@ -25,6 +29,9 @@ import todoList from './todolist'
         methods: {
             addTodo(todo) {
                 this.todos.push(todo);
+            },
+            removeTodo(todoId){
+                this.todos = this.todos.filter( item => item.id !== todoId )
             }
         },
     }
