@@ -4,9 +4,10 @@
         todo-input(@addTodo="addTodo")
         todo-list(
             v-if="todos.length > 0"
-            :todos="todos"
+            :todos="filteredTodos"
             @removeTodo="removeTodo"
             @checkTodo="checkTodo"
+            @filterTodos="filterTodos"
             )
 </template>
 
@@ -19,11 +20,25 @@ import todoList from './todolist'
         name: 'todo',
         data() {
             return {
-                todos: []
+                todos: [],
+                filter: 'all'
             }
         },
         components: {
             todoInput, todoList
+        },
+        computed: {
+            filteredTodos() {
+                switch(this.filter){
+                    case 'all' :
+                        return this.todos
+                    case 'active' :
+                        return this.todos.filter(item => item.checked === false)
+                    case 'completed' :
+                        return this.todos.filter(item => item.checked) 
+                }
+                return this.filter 
+            }
         },
         methods: {
             addTodo(todo) {
@@ -34,6 +49,9 @@ import todoList from './todolist'
             },
             checkTodo(todo){
                 this.todos = this.todos.map(item => (item.id === todo.id ? todo : item));
+            },
+            filterTodos (filter){
+                this.filter = filter;
             }
         },
     }

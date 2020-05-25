@@ -13,7 +13,7 @@
       .footer_content
         .counter {{ todos.length }} items left
         .filter
-          todoListFilter
+          todoListFilter(@filterTodos="filterTodos")
                         
 </template>
 
@@ -33,6 +33,9 @@ export default {
     },
     checkTodo(todo){
       this.$emit('checkTodo', todo);
+    },
+    filterTodos(filter){
+      this.$emit('filterTodos', filter)
     }
   },
 }
