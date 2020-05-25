@@ -2,7 +2,7 @@
     .todo_input
         input(
             type="text"
-            placeholder="What Todo? ..."
+            placeholder="My TODO list ..."
             autofocus
             v-model="todo.name"
             @keydown.enter="addTodo"

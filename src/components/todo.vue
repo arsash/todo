@@ -6,6 +6,7 @@
             v-if="todos.length > 0"
             :todos="todos"
             @removeTodo="removeTodo"
+            @checkTodo="checkTodo"
             )
 </template>
 
@@ -30,6 +31,9 @@ import todoList from './todolist'
             },
             removeTodo(todoId){
                 this.todos = this.todos.filter( item => item.id !== todoId )
+            },
+            checkTodo(todo){
+                this.todos = this.todos.map(item => (item.id === todo.id ? todo : item));
             }
         },
     }
