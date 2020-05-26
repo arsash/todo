@@ -1,6 +1,7 @@
 <template lang="pug">
   .container
     todo
+    todo
 </template>
 
 <script>
