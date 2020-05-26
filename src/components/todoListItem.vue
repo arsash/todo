@@ -5,6 +5,11 @@
               .input_block
                   input(type='checkbox' @change="changeTodo" :checked="todo.checked").input
               .title {{todo.name}}
+            router-link(
+              tag="button"
+              :to="`/view/${todo.name}`"
+              class="view"
+            ) more ...
             button(type='button' @click="removeTodo").remove x
 </template>
 
@@ -37,6 +42,19 @@
     border: none;
     cursor: pointer;
     font-size: 20px;
+    visibility: hidden;
+}
+
+.view {
+  visibility: hidden;
+  border: none;
+  cursor: pointer;
+  padding: 10px 25px;
+  margin-right: 15px;
+
+  &:hover {
+    // background: aliceblue;
+  }
 }
 
 .todo__item {
@@ -45,7 +63,11 @@
 
   &:hover {
     .remove {
-      display: flex;
+      visibility: visible;
+    }
+
+    .view {
+      visibility: visible;
     }
   }
 }

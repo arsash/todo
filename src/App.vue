@@ -1,7 +1,6 @@
 <template lang="pug">
   .container
-    todo
-    todo
+    router-view
 </template>
 
 <script>
